@@ -24,3 +24,5 @@ python uncertainty_hug.py --nper 5 --nhist 20 --ncan 20 --bs 5 --ind Candidate -
 
 
 <for fine-tuning base block>
+
+conda env create -f enviroment.yml
