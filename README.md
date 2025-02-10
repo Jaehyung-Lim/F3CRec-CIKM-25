@@ -1,4 +1,4 @@
-# F3CRec
+# Federated Continual Recommendation
 for anonymous submission of KDD 2025.
 
 Source codes
