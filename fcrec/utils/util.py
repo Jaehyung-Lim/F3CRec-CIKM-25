@@ -10,6 +10,9 @@ import torch.nn as nn
 import subprocess
 from .evaluation_all import *
 
+current_file_dir = os.path.dirname(os.path.abspath(__file__))  
+project_root = os.path.dirname(os.path.dirname(current_file_dir))
+
 def set_seed(seed):
     random.seed(seed)
     np.random.seed(seed)
@@ -59,16 +62,22 @@ def get_hyper_param(args):
 
 
 def save_baseblock_param(args, model):
-    save_dir = f"/home/jaehyunglim/fcrec2025/base_model_param/{args.dataset}"
-    save_path = os.path.join(save_dir, f"{args.baseline}_{args.topN}_{args.standard}.pth")
+    # save_dir = f"/home/jaehyunglim/F3CRec/base_model_param/{args.dataset}"
+    # save_path = os.path.join(save_dir, f"{args.baseline}_{args.topN}_{args.standard}.pth")
+    # os.makedirs(save_dir, exist_ok=True)
     
+    save_dir = os.path.join(project_root, "base_model_param", args.dataset)
+    save_path = os.path.join(save_dir, f"{args.baseline}_{args.topN}_{args.standard}.pth")
+
     os.makedirs(save_dir, exist_ok=True)
 
     torch.save(model, save_path)
  
     
 def load_baseblock_param(args):
-    save_path =f"/home/jaehyunglim/fcrec2025/base_model_param/{args.dataset}/{args.baseline}_{args.topN}_{args.standard}.pth"
+    #save_path =f"/home/jaehyunglim/F3CRec/base_model_param/{args.dataset}/{args.baseline}_{args.topN}_{args.standard}.pth"
+    save_path = os.path.join(project_root, "base_model_param", args.dataset, f"{args.baseline}_{args.topN}_{args.standard}.pth")
+
     return torch.load(save_path)
 
 
@@ -93,7 +102,9 @@ def save_result_as_csv(args, model, RESULT, block_info, result_or_forget=None, c
     else:
         save_model = args.model
         
-    dir_path = f"/home/jaehyunglim/fcrec2025/fcrec_result/{args.dataset}/{args.backbone}/{save_model}"
+    #dir_path = f"/home/jaehyunglim/F3CRec/fcrec_result/{args.dataset}/{args.backbone}/{save_model}"
+    dir_path = os.path.join(project_root, "fcrec_result", args.dataset, args.backbone, str(save_model))
+
 
     if args.model == 'ablation':
         dir_path = dir_path + '/' + args.ablation
@@ -118,29 +129,27 @@ def save_result_as_csv(args, model, RESULT, block_info, result_or_forget=None, c
         writer.writerow(row)  # Write the data row
 
 
-def get_num_user_item(total_train_dataset, total_valid_dataset, total_test_dataset):
-    '''ml-100k, ml-1m'''
-    user_item_info = {}    
-    num_user = -1
-    num_item = -1
-    
-    for idx in range(5):
-        train = total_train_dataset[f'TASK_{idx}']
-        valid = total_valid_dataset[f'TASK_{idx}']
-        test = total_test_dataset[f'TASK_{idx}']
-    
-        num_user = max(num_user, max(train.keys()) + 1)
-        
-        all_items = set()
-        for dataset in [train, valid, test]:
-            for items in dataset.values():
-                all_items.update(items)
-        
-        num_item = max(num_item, max(all_items) + 1)
-        
+def get_num_user_item(total_blocks):
+
+    user_item_info = {}
+
+    block_user = set()
+    block_item = set()
+
+    for idx, block in enumerate(total_blocks):
+        cur_user = set(block.user.values.tolist())
+        cur_item = set(block.item.values.tolist())
+
+        block_user = block_user.union(cur_user)
+        block_item = block_item.union(cur_item)
+
+        num_user = len(block_user)
+        num_item = len(block_item)
+
         user_item_info[f"TASK_{idx}"] = {'num_user': num_user, 'num_item': num_item}
-    
+
     return user_item_info
+
 
 
 def make_rating_mat(dict, is_train, num_user, num_item):
@@ -219,7 +228,7 @@ def get_rank_discrepancy_kd_loss(args, target_mat, pred_mat, last_topn_list, dev
     return kd_loss
 
 
-def diff(old_emb, new_emb, type):
+def diff(old_emb, new_emb):
     '''
         get item-wise knowledge shift
     '''
