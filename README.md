@@ -1,5 +1,5 @@
 # Federated Continual Recommendation
-for anonymous submission of KDD 2025.
+for anonymous submission of CIKM 2025.
 
 Source codes
 for F3CRec
