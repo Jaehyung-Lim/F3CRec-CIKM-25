@@ -1,8 +1,19 @@
 # Federated Continual Recommendation
 Official PyTorch implementation of our CIKM 2025 paper.
 
+## 1. Overview
+This repository provides the source code of our paper: Federated Continual Recommendation, accepted in CIKM'25 as a full research paper.
+
+In the paper, we first propose novel research task "Federated Continual Recommendation". We deal with Federated Recommendation and Continual Recommendation 동시에. 그리고 각 Recommendation task가 가지고 있는 고유한 constraint를 고려하여, 이를 해결하고자 함.
+
+Existing Continual Recommendation 모델과 Federated Recommendation 모델은 양립 불가능함.
+이를 해결하기 위해, we propose two continual learning methods:
+1. Client-side continual learning: Adaptive Replay Memory
+2. Server-side continual learning: Item-wise Temporal Mean
+   
+
+
 Source codes
-for F3CRec
 
 
 We provide fine-tuned FedMF weights for base block ($\mathcal{D}^0$) in ml-100k dataset
