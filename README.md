@@ -1,5 +1,5 @@
 # Federated Continual Recommendation
-for anonymous submission of CIKM 2025.
+Official PyTorch implementation of our CIKM 2025 paper.
 
 Source codes
 for F3CRec
