@@ -10,7 +10,7 @@ In this work, we propose a novel research task: **Federated Continual Recommenda
 We carefully consider the unique constraints of each task and design our solution accordingly.
 
 <p align="center">
-  <img src="task_concept.png" alt="Task Definition" width="50%"/>
+  <img src="task_concept.png" alt="Task Definition" width="60%"/>
 </p>
 
 Conventional continual recommendation models and federated recommendation models are fundamentally incompatible due to conflicting assumptions.  
@@ -20,7 +20,7 @@ To address this challenge, we propose two continual learning strategies tailored
 2. **Server-side continual learning**: Item-wise Temporal Mean
 
 <p align="center">
-  <img src="method_figure.png" alt="Method Overview" width="80%"/>
+  <img src="method_figure.png" alt="Method Overview" width="100%"/>
 </p>
 
 ---
