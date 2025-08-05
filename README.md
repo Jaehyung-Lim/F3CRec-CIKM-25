@@ -1,28 +1,35 @@
 # Federated Continual Recommendation
+
 Official PyTorch implementation of our CIKM 2025 paper.
 
 ## 1. Overview
-This repository provides the source code of our paper: Federated Continual Recommendation, accepted in CIKM'25 as a full research paper.
 
-In the paper, we first propose novel research task "Federated Continual Recommendation". We deal with Federated Recommendation and Continual Recommendation 동시에. 그리고 각 Recommendation task가 가지고 있는 고유한 constraint를 고려하여, 이를 해결하고자 함.
+This repository contains the official implementation of our paper **"Federated Continual Recommendation"**, accepted as a full research paper at CIKM 2025.
 
-![Task definition](task_concept.png)
+In this work, we propose a novel research task: **Federated Continual Recommendation**, which jointly considers two orthogonal challenges — *federated recommendation* and *continual recommendation* — in a unified framework.  
+We carefully consider the unique constraints of each task and design our solution accordingly.
 
-Existing Continual Recommendation 모델과 Federated Recommendation 모델은 양립 불가능함.
-이를 해결하기 위해, we propose two continual learning methods:
-1. Client-side continual learning: Adaptive Replay Memory
-2. Server-side continual learning: Item-wise Temporal Mean
+<p align="center">
+  <img src="task_concept.png" alt="Task Definition" width="60%"/>
+</p>
 
-![Task definition](method_figure.png)
+Conventional continual recommendation models and federated recommendation models are fundamentally incompatible due to conflicting assumptions.  
+To address this challenge, we propose two continual learning strategies tailored for the federated setting:
 
+1. **Client-side continual learning**: Adaptive Replay Memory  
+2. **Server-side continual learning**: Item-wise Temporal Mean
 
-Source codes
+<p align="center">
+  <img src="method_figure.png" alt="Method Overview" width="60%"/>
+</p>
 
+---
 
-We provide fine-tuned FedMF weights for base block ($\mathcal{D}^0$) in ml-100k dataset
+## 2. Source Code & Usage
 
+We provide fine-tuned FedMF weights for the base block ($\mathcal{D}^0$) on the **MovieLens-100K** dataset.
 
-- enviroment setting
+### Environment Setup
 ```
 conda env create -f enviroment.yml
 ```
