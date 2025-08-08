@@ -1,6 +1,7 @@
 # Federated Continual Recommendation
 
 Official PyTorch implementation of our CIKM 2025 paper.
+Our paper is available: https://arxiv.org/pdf/2508.04792
 
 ## 1. Overview
 
