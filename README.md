@@ -2,7 +2,8 @@
 
 Official PyTorch implementation of our CIKM 2025 paper.
 
-Our paper is now available on: https://arxiv.org/pdf/2508.04792
+Our paper is now available on https://arxiv.org/pdf/2508.04792
+
 
 ## 1. Overview
 
@@ -45,3 +46,16 @@ python main.py --save_model 1 --load_model 0 --backbone fedmf --model fcrec --lr
 ```
 python3 main.py --load_model 1 --backbone fedmf --model fcrec --lr 1.0 --dim 32 --patience 30 --client_cl --server_cl --reg_client_cl 0.1 --eps 0.006 --topN 30 --beta 0.9 --num_round 100 --dataset ml-100k
 ```
+
+## 3. Citation
+
+If you find this repository useful in your research, please consider citing our paper:
+
+```bibtex
+@inproceedings{lim2025federated,
+  title={Federated Continual Recommendation},
+  author={Lim, Jaehyung and Kweon, Wonbin and Kim, Woojoo and Kim, Junyoung and Choi, Seongjin and Kim, Dongha and Yu, Hwanjo},
+  booktitle={Proceedings of the 34th ACM International Conference on Information and Knowledge Management},
+  pages={1798--1808},
+  year={2025}
+}
